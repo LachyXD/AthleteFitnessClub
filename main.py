@@ -1,7 +1,7 @@
 from user import *
+from training import *
 
 #Config
-trainingPlans = [["B","Beginner", 25.00], ["I","Intermediate", 30.00], ["E","Elite", 35.00]]
 privFee = 9.50 #hourly rate
 compFee = 22.00
 #Format 0. Weight category name, 1. min weight, 2. max weight
@@ -14,24 +14,10 @@ person = Athlete()
 person.getName()
 person.getWeight()
 
-#Allow user to select training plan
-print("##### TRAINING PLANS #####")
-for plan in trainingPlans:
-    print(f"{plan[1]} £{plan[2]}")
-
-#validation loop
-while True:
-    planChoice = input("Select a plan using the name or first letter: ")
-    if planChoice.capitalize() in [trainingPlans[0][0], trainingPlans[0][1], trainingPlans[1][0], trainingPlans[1][1], trainingPlans[2][0], trainingPlans[2][1]]:
-        break
-    else:
-        print("Invalid choice")
-
-#Add training fee 
-for plan in trainingPlans:
-    if planChoice.capitalize() in [plan[0], plan[1]]:
-        trainingFee = plan[2]
-        costs.append(["Training Plan", trainingFee])
+#Training Plan
+trainingPlan = Training()
+trainingPlan.setPlan()
+costs.append([f"Training Plan ({trainingPlan.getPlan()})",trainingPlan.getCost()])
 
 #Output of costs
 person.displayInfo()
