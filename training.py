@@ -26,3 +26,27 @@ class Training:
             
     def getPlan(self):
         return self.planChoice
+    
+#private training
+class PrivTuition:
+    def __init__(self):
+        self.hours = 0
+        self.fee = 9.50
+
+    def hoursTuition(self):
+        print("##### PRIVATE TUITION #####")
+        while True:
+            try:
+                self.hours = int(input("How many hours of private tuition would you like a week (max 5)"))
+                if self.hours > 5:
+                    print("too much private tuition. try again")
+                else:
+                    break
+            except ValueError:
+                print("Invalid input type, enter a number...")
+        
+        totalFee = (self.hours *4) * self.fee
+        return totalFee
+    
+    def getHours(self):
+        return self.hours

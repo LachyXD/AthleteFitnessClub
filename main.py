@@ -3,8 +3,6 @@ from training import *
 from competition import *
 
 #Config
-privFee = 9.50 #hourly rate
-compFee = 22.00
 #Format 0. Weight category name, 1. min weight, 2. max weight
 costs = []
 
@@ -24,7 +22,11 @@ compete = Competitions()
 compete.eligibilityChecker(trainingPlan.getPlan())
 compete.enter()
 costs.append([f"{compete.getCount()} Competitions", compete.getCost()])
+
 #Private Tuition Section
+privTuition = PrivTuition()
+privFee = privTuition.hoursTuition()
+costs.append([f"Private Tuition {privTuition.getHours()} weekly hours", privFee])
 
 #Output of costs
 person.displayInfo()
