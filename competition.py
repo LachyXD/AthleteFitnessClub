@@ -7,8 +7,8 @@ class Competitions:
         self.eligible = False
 
     def eligibilityChecker(self, athleteTrainingPlan):
-        enter = input("Would you like to enter competitions?\n")
-        if enter.upper() == "Y" and athleteTrainingPlan in ["I","E", "Elite", "Intermediate"]:
+        enter = input("Would you like to enter competitions? Y or N\n")
+        if enter.upper() == "Y" and athleteTrainingPlan.upper() in ["I","E", "ELITE", "INTERMEDIATE"]:
             self.eligible = True
 
     def enter(self):
