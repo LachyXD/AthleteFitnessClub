@@ -11,5 +11,5 @@ class Reciept:
         with open("Reciept.txt", "w") as reciept:
             reciept.write(f"##### RECIEPT FOR {dt.datetime.now()} #####")
             reciept.write(f"{athlete.displayInfo()}\n")
-            for cost in self.costs:
-                reciept.write(f"{cost[0]} @ £{cost[1]:.2f}\n")
+            for description, amount in self.costs.items():
+                reciept.write(f"{description} @ £{amount:.2f}\n")

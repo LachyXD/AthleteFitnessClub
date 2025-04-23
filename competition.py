@@ -1,11 +1,13 @@
 class Competitions:
     def __init__(self):
         #format category name, min weight, max weight
-        self.categories = [["Heavyweight", 101, 999],["Light-Heavyweight", 90,100],["Middleweight", 82,90],["Light-Middleweight", 74,81],["Lightweight", 67,73],["Flyweight", 0,66]]
+        self.categories = [["Heavyweight", 101, 999],["Light-heavyweight", 90,100],["Middleweight", 82,90],["Light-middleweight", 74,81],["Lightweight", 67,73],["Flyweight", 0,66]]
         self.fee = 22.00
         self.entries = 0
         self.eligible = False
         self.category = ""
+        #Dict for categories
+        self.categoryMap = {cat[0]: (cat[1],cat[2] ) for cat in self.categories}
 
     def eligibilityChecker(self, athleteTrainingPlan):
         enter = input("Would you like to enter competitions? Y or N\n")
@@ -14,12 +16,12 @@ class Competitions:
 
     def enter(self):
         if self.eligible:
-            for category in self.categories:
-                print(f"{category[0]} Min Weight: {category[1]}kg Max Weight {category[2]}kg")
+            for category, (minWeight, maxWeight) in self.categoryMap.items():
+                print(f"{category} Min Weight: {minWeight}kg Max Weight {maxWeight}kg")
 
             while True:
                 categoryChoice = input("Select a weight category: ")
-                if categoryChoice.capitalize() in [self.categories[0][0], self.categories[1][0], self.categories[2][0], self.categories[3][0], self.categories[4][0], self.categories[5][0]]:
+                if categoryChoice.capitalize() in self.categoryMap:
                     break
                 else:
                     print("Invalid weight category")
@@ -54,17 +56,15 @@ class Competitions:
     #Weight Comparison System
     def weightCompare(self, athleteWeight :float, athleteCategory: str):
         if athleteCategory != "":
-            for category in self.categories:
-                if athleteCategory.capitalize() == category[0]:
-                    catMinWeight = category[1]
-                    catMaxWeight = category[2]
-                    break
+            
+            if athleteCategory.capitalize() in self.categoryMap:
+                catMinWeight, catMaxWeight = self.categoryMap[athleteCategory.capitalize()]
 
             if athleteWeight > catMaxWeight:
                 difference = athleteWeight - catMaxWeight
                 print(f"{difference}KG Overweight!")
             elif athleteWeight < catMinWeight:
-                difference = catMinWeight - athleteWeight
-                print(f"You need to gain {difference[1:]}KG")
+                diffrence = catMinWeight - athleteWeight
+                print(f"You need to gain {diffrence}KG")
             else:
                 print("As it stands you will make weight!")
