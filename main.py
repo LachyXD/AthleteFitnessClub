@@ -15,6 +15,7 @@ person.setWeight()
 #Training Plan
 trainingPlan = Training()
 trainingPlan.setPlan()
+person.setPlan(trainingPlan.getPlan())
 costs.append([f"Training Plan ({trainingPlan.getPlan()})",trainingPlan.getCost()])
 
 #Competitions

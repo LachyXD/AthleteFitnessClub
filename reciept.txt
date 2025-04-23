@@ -1,5 +1,5 @@
 None
-##### RECIEPT: 2025-04-23 10:41:12.504062 #####
-Training Plan (i) @ £30.00
-2 <bound method Competitions.getCategory of <competition.Competitions object at 0x000001FF4DD670E0>> Competitions @ £44.00
-Private Tuition 0 weekly hours @ £0.00
+##### RECIEPT: 2025-04-23 11:04:57.053123 #####
+Training Plan (b) @ £25.00
+0  Competitions @ £0.00
+Private Tuition 3 weekly hours @ £114.00
