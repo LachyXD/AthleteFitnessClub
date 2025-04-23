@@ -1,10 +1,11 @@
 class Competitions:
     def __init__(self):
         #format category name, min weight, max weight
-        self.categories = [["Heavyweight", 101, 999],["Light-Heavyweight", 90,100],["Middleweight", 82,90],["Light-Middleweight", 74,81],["Lightweight", 67,73],["flyweight", 0,66]]
+        self.categories = [["Heavyweight", 101, 999],["Light-Heavyweight", 90,100],["Middleweight", 82,90],["Light-Middleweight", 74,81],["Lightweight", 67,73],["Flyweight", 0,66]]
         self.fee = 22.00
         self.entries = 0
         self.eligible = False
+        self.category = ""
 
     def eligibilityChecker(self, athleteTrainingPlan):
         enter = input("Would you like to enter competitions? Y or N\n")
@@ -22,6 +23,8 @@ class Competitions:
                     break
                 else:
                     print("Invalid weight category")
+
+            self.category = categoryChoice.capitalize()
 
             while True:
                 try:
@@ -44,3 +47,24 @@ class Competitions:
     
     def getCount(self):
         return self.entries
+    
+    def getCategory(self):
+        return self.category
+    
+    #Weight Comparison System
+    def weightCompare(self, athleteWeight :float, athleteCategory: str):
+        if athleteCategory != "":
+            for category in self.categories:
+                if athleteCategory.capitalize() == category[0]:
+                    catMinWeight = category[1]
+                    catMaxWeight = category[2]
+                    break
+
+            if athleteWeight > catMaxWeight:
+                difference = athleteWeight - catMaxWeight
+                print(f"{difference}KG Overweight!")
+            elif athleteWeight < catMinWeight:
+                difference = catMinWeight - athleteWeight
+                print(f"You need to gain {difference[1:]}KG")
+            else:
+                print("As it stands you will make weight!")

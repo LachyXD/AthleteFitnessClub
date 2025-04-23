@@ -11,7 +11,7 @@ class Athlete:
     def setPlan(self, plan):
         self.plan = plan
 
-    def getWeight(self):
+    def setWeight(self):
         while True:
             try:
                 self.weight = float(input("Please enter your weight in kg: "))
@@ -20,6 +20,9 @@ class Athlete:
                 print("input must be a float")
             except:
                 print("An unknown error occured")
+
+    def getWeight(self):
+        return self.weight
     
     def displayInfo(self):
         print(f"Name: {self.name}")

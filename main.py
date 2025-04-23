@@ -1,16 +1,16 @@
 from user import *
 from training import *
 from competition import *
+from reciept import *
 
 #Config
-#Format 0. Weight category name, 1. min weight, 2. max weight
 costs = []
 
 #Creates the athlete profile
 print("##### ATHLETE DETAILS #####")
 person = Athlete()
 person.getName()
-person.getWeight()
+person.setWeight()
 
 #Training Plan
 trainingPlan = Training()
@@ -21,7 +21,9 @@ costs.append([f"Training Plan ({trainingPlan.getPlan()})",trainingPlan.getCost()
 compete = Competitions()
 compete.eligibilityChecker(trainingPlan.getPlan())
 compete.enter()
-costs.append([f"{compete.getCount()} Competitions", compete.getCost()])
+costs.append([f"{compete.getCount()} {compete.getCategory()} Competitions", compete.getCost()])
+person.setCategory(compete.getCategory())
+compete.weightCompare(person.getWeight(), compete.getCategory())
 
 #Private Tuition Section
 privTuition = PrivTuition()
@@ -35,3 +37,6 @@ for cost in costs:
     print(f"{cost[0]} @ £{cost[1]:.2f}")
 
 #Write to file
+reciept = Reciept()
+reciept.setCosts(costs)
+reciept.makeReciept(person)
