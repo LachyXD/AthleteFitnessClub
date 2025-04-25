@@ -35,7 +35,7 @@ class PrivTuition:
         print("##### PRIVATE TUITION #####")
         while True:
             try:
-                self.hours = int(input("How many hours of private tuition would you like a week (max 5)"))
+                self.hours = int(input("How many hours of private tuition would you like a week (max 5) "))
                 if self.hours > 5:
                     print("too much private tuition. try again")
                 else:

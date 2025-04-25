@@ -9,7 +9,7 @@ class Competitions:
         #Dict for categories
         self.categoryMap = {cat[0]: (cat[1],cat[2] ) for cat in self.categories}
 
-    def eligibilityChecker(self, athleteTrainingPlan):
+    def eligibilityChecker(self, athleteTrainingPlan: str):
         enter = input("Would you like to enter competitions? Y or N\n")
         if enter.upper() == "Y" and athleteTrainingPlan.upper() in ["I","E", "ELITE", "INTERMEDIATE"]:
             self.eligible = True

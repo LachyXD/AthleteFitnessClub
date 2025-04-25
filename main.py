@@ -4,40 +4,38 @@ from competition import *
 from reciept import *
 
 #Config
-costs = {}
+data = {}
 
 #Creates the athlete profile
 print("##### ATHLETE DETAILS #####")
 person = Athlete()
-person.getName()
+person.setName()
 person.setWeight()
+data[f"Name"] = person.getName()
+data[f"Weight"] = f"{person.getWeight()} KG"
 
 #Training Plan
 trainingPlan = Training()
 trainingPlan.setPlan()
 person.setPlan(trainingPlan.getPlan())
-costs[f"Training Plan ({trainingPlan.getPlan()})"] = trainingPlan.getCost()
+data[f"Training Plan ({trainingPlan.getPlan()})"] = trainingPlan.getCost()
 
 #Competitions
 compete = Competitions()
 compete.eligibilityChecker(trainingPlan.getPlan())
 compete.enter()
-costs[f"{compete.getCount()} {compete.getCategory()} Competitions"] = compete.getCost()
+data[f"{compete.getCount()} {compete.getCategory()} Competitions"] = compete.getCost()
 person.setCategory(compete.getCategory())
 compete.weightCompare(person.getWeight(), compete.getCategory())
 
 #Private Tuition Section
 privTuition = PrivTuition()
 privFee = privTuition.hoursTuition()
-costs[f"Private Tuition {privTuition.getHours()} weekly hours"] = privFee
+data[f"Private Tuition {privTuition.getHours()} weekly hours"] = privFee
 
-#Output of costs
-person.displayInfo()
-print("##### RECIEPT #####")
-for description, amount in costs.items():
-    print(f"{description} @ £{amount:.2f}")
-
-#Write to file
+#Output of costs saves and loads to/from a json file
 reciept = Reciept()
-reciept.setCosts(costs)
-reciept.makeReciept(person)
+reciept.setData(data)
+reciept.calcTotal()
+reciept.create()
+reciept.display()

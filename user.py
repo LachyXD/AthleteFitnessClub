@@ -5,10 +5,13 @@ class Athlete:
         self.weight = 0.00
         self.category = ""
 
-    def getName(self):
+    def setName(self):
         self.name = input("Please Enter your name: ")
+
+    def getName(self):
+        return self.name
     
-    def setPlan(self, plan):
+    def setPlan(self, plan: str):
         self.plan = plan
 
     def setWeight(self):
@@ -30,5 +33,5 @@ class Athlete:
         print(f"Training plan: {self.plan}")
 
     #get weight category
-    def setCategory(self, category):
+    def setCategory(self, category: str):
         self.category = category
