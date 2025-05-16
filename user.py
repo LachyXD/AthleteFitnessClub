@@ -5,6 +5,7 @@ class Athlete:
         self.weight = 0.00
         self.category = ""
 
+    #getters and setters
     def setName(self):
         self.name = input("Please Enter your name: ")
 
@@ -17,7 +18,7 @@ class Athlete:
     def setWeight(self):
         while True:
             try:
-                self.weight = float(input("Please enter your weight in kg: "))
+                self.weight = float(input("Please enter your weight in kg: ")) #weight must be a float
                 break
             except ValueError:
                 print("input must be a float")

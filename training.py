@@ -33,11 +33,13 @@ class PrivTuition:
 
     def hoursTuition(self):
         print("##### PRIVATE TUITION #####")
-        while True:
+        while True:#tuition validation loop
             try:
                 self.hours = int(input("How many hours of private tuition would you like a week (max 5) "))
-                if self.hours > 5:
+                if self.hours >5:
                     print("too much private tuition. try again")
+                elif self.hours <0:
+                    print("cannot have negative hours")
                 else:
                     break
             except ValueError:

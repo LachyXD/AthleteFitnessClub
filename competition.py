@@ -14,6 +14,7 @@ class Competitions:
         if enter.upper() == "Y" and athleteTrainingPlan.upper() in ["I","E", "ELITE", "INTERMEDIATE"]:
             self.eligible = True
 
+    #this allows the user to enter competitions or to deny their entry if they are on the incorrect membership plan
     def enter(self):
         if self.eligible:
             for category, (minWeight, maxWeight) in self.categoryMap.items():
@@ -21,14 +22,14 @@ class Competitions:
 
             while True:
                 categoryChoice = input("Select a weight category: ")
-                if categoryChoice.capitalize() in self.categoryMap:
+                if categoryChoice.capitalize() in self.categoryMap: #uses the dict created to look at all the keys to check for matches.
                     break
                 else:
                     print("Invalid weight category")
 
             self.category = categoryChoice.capitalize()
 
-            while True:
+            while True: #Validation Loop for entering competions to ensure only integers are entered.
                 try:
 
                     self.entries = int(input(f"Enter how many competitions you would like to enter (£{self.fee} each): "))
@@ -42,7 +43,7 @@ class Competitions:
         else:
             print("You are not eligible to enter competitions on current membership plan")
 
-    
+    #Getters and setters
     def getCost(self):
         cost = self.entries * self.fee
         return cost
